@@ -1,0 +1,12 @@
+parameters:
+- name: imageName
+  type: string
+  default: 'ubuntu-latest'
+
+jobs:
+- job: 'ubuntu_mypy'
+  displayName: 'Mypy Ubuntu'
+  pool:
+    vmImage: ${{ parameters.imageName }}
+  steps:
+  - template: 'run_mypy_steps.yml'
