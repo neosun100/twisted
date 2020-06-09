@@ -43,12 +43,17 @@ jobs:
       env: TOXENV=py38-alldeps-withcov-posix,coverage-prepare,codecov-push,coveralls-push
     - python: 3.6
       env: TOXENV=lint
+    - python: 3.8
+      env: TOXENV=mypy
     # We need a builder without IPv6. This is going to be slower than all the
     # others, but that's ok.
     - python: 3.6
       env: TOXENV=py36-alldeps-withcov-posix,coverage-prepare,codecov-push,coveralls-push DISABLE_IPV6=yes
     - python: pypy3
       env: TOXENV=pypy-nodeps-withcov-posix,coverage-prepare,codecov-push,coveralls-push PYPY_VERSION=pypy3.6-7.3.0
+  allow_failures:
+    - python: 3.8
+      env: TOXENV=mypy
 
 addons:
   apt:
